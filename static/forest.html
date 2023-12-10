@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biji AI</title>
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"
+      integrity="sha512-DWtDo/6AXxH1t9p7GCWqmC4XTVK/eje94XTV6QYB39rGllLN8Tr3izDf6lkmebgqRnYh4wtSFm4CvBoA9SrdpA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+    <script src="forest.js"></script>
+    <script
+      src="https://kit.fontawesome.com/8e38487435.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!--=============== HEADER ===============-->
+    <header class="header" id="header">
+      <nav class="nav container">
+        <a href="index.html" class="nav__logo"
+          ><img src="images/bijilogo.png"
+        /></a>
+        <!--=============== search bar ===============-->
+        <div class="search-box">
+          <form action="">
+            <input type="text" name="" search id="srch" placeholder="Search" />
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="market.html" class="nav__link">
+                <i class="bx bx-store-alt nav__icon"></i>
+                <span class="nav__name">Market</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="chats.html" class="nav__link">
+                <i class="fa-regular fa-comment-dots nav__icon"></i>
+                <span class="nav__name">Chat</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="app.html" class="nav__link active-link">
+                <i class="bx bx-scan nav__icon"></i>
+                <span class="nav__name">Scan</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="forest.html" class="nav__link">
+                <i class="bx bxs-tree nav__icon"></i>
+                <span class="nav__name">Forest</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="profile.html" class="nav__link">
+                <i class="bx bx-user nav__icon"></i>
+                <span class="nav__name">Me</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="h-screen w-100 overflow-hidden relative mt-6">
+      <div class="flex flex-col h-screen pl-0 w-full lg:pl-20">
+        <main
+          class="
+            h-screen
+            overflow-auto
+            pb-36
+            pt-4
+            px-2
+            md:pb-8
+            md:pt-4
+            lg:pt-0
+            lg:px-4
+          "
+        >
+          <main>
+            <section>
+              <div class="flex flex-wrap items-start justify-start">
+                <div class="w-full p-6 lg:mt-0 lg:w-4/12 lg:pr-4">
+                  <div class="flex items-center justify-between mt-2 mb-4">
+                    <h3>My Forest🌳</h3>
+                    <p class=""></p>
+                  </div>
+                  <div class="flex flex-col items-start gap-4">
+                    <p class="mt-4">Tree Selection</p>
+                    <div class="w-full">
+                      <div class="w-full max-w-md mx-auto">
+                        <div
+                          id="headlessui-radiogroup-39"
+                          role="radiogroup"
+                          aria-labelledby="headlessui-label-40"
+                        >
+                          <label
+                            class="sr-only"
+                            id="headlessui-label-40"
+                            role="none"
+                            >Server size</label
+                          >
+                          <div class="flex gap-2" role="none">
+                            <div
+                              class="
+                                bg-blue-300 bg-opacity-75
+                                text-white
+                                flex-shrink-0
+                                relative
+                                rounded-full
+                                shadow-md
+                                w-8
+                                h-8
+                                cursor-pointer
+                                flex
+                                text-center
+                                items-center
+                                focus:outline-none
+                                tree-selection
+                              "
+                              onclick="onTreeSelectionClick(1)"
+                              aria-checked="true"
+                              tabindex="0"
+                            >
+                              <div
+                                class="flex items-center justify-center w-full"
+                              >
+                                <div class="flex items-center">
+                                  <div class="text-sm">
+                                    <p
+                                      class="font-medium text-white"
+                                      id="headlessui-label-42"
+                                    >
+                                      1
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="
+                                bg-white
+                                flex-shrink-0
+                                relative
+                                rounded-full
+                                shadow-md
+                                w-8
+                                h-8
+                                cursor-pointer
+                                flex
+                                text-center
+                                items-center
+                                focus:outline-none
+                                tree-selection
+                              "
+                              onclick="onTreeSelectionClick(2)"
+                              aria-checked="false"
+                              tabindex="-1"
+                            >
+                              <div
+                                class="flex items-center justify-center w-full"
+                              >
+                                <div class="flex items-center">
+                                  <div class="text-sm">
+                                    <p
+                                      class="font-medium text-gray-900"
+                                      id="headlessui-label-44"
+                                    >
+                                      2
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="
+                                bg-white
+                                flex-shrink-0
+                                relative
+                                rounded-full
+                                shadow-md
+                                w-8
+                                h-8
+                                cursor-pointer
+                                flex
+                                text-center
+                                items-center
+                                focus:outline-none
+                                tree-selection
+                              "
+                              onclick="onTreeSelectionClick(3)"
+                              aria-checked="false"
+                              tabindex="-1"
+                            >
+                              <div
+                                class="flex items-center justify-center w-full"
+                              >
+                                <div class="flex items-center">
+                                  <div class="text-sm">
+                                    <p
+                                      class="font-medium text-gray-900"
+                                      id="headlessui-label-46"
+                                    >
+                                      3
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="
+                                bg-white
+                                flex-shrink-0
+                                relative
+                                rounded-full
+                                shadow-md
+                                w-8
+                                h-8
+                                cursor-pointer
+                                flex
+                                text-center
+                                items-center
+                                focus:outline-none
+                                tree-selection
+                              "
+                              onclick="onTreeSelectionClick(4)"
+                              aria-checked="false"
+                              tabindex="-1"
+                            >
+                              <div
+                                class="flex items-center justify-center w-full"
+                              >
+                                <div class="flex items-center">
+                                  <div class="text-sm">
+                                    <p
+                                      class="font-medium text-gray-900"
+                                      id="headlessui-label-48"
+                                    >
+                                      4
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="
+                                bg-white
+                                flex-shrink-0
+                                relative
+                                rounded-full
+                                shadow-md
+                                w-8
+                                h-8
+                                cursor-pointer
+                                flex
+                                text-center
+                                items-center
+                                focus:outline-none
+                                tree-selection
+                              "
+                              onclick="onTreeSelectionClick(5)"
+                              aria-checked="false"
+                              tabindex="-1"
+                            >
+                              <div
+                                class="flex items-center justify-center w-full"
+                              >
+                                <div class="flex items-center">
+                                  <div class="text-sm">
+                                    <p
+                                      class="font-medium text-gray-900"
+                                      id="headlessui-label-50"
+                                    >
+                                      5
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="
+                                bg-white
+                                flex-shrink-0
+                                relative
+                                rounded-full
+                                shadow-md
+                                w-8
+                                h-8
+                                cursor-pointer
+                                flex
+                                text-center
+                                items-center
+                                focus:outline-none
+                                tree-selection
+                              "
+                              onclick="onTreeSelectionClick(6)"
+                              aria-checked="false"
+                              tabindex="-1"
+                            >
+                              <div
+                                class="flex items-center justify-center w-full"
+                              >
+                                <div class="flex items-center">
+                                  <div class="text-sm">
+                                    <p
+                                      class="font-medium text-gray-900"
+                                      id="headlessui-label-52"
+                                    >
+                                      6
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="
+                                bg-white
+                                flex-shrink-0
+                                relative
+                                rounded-full
+                                shadow-md
+                                w-8
+                                h-8
+                                cursor-pointer
+                                flex
+                                text-center
+                                items-center
+                                focus:outline-none
+                                tree-selection
+                              "
+                              onclick="onTreeSelectionClick(7)"
+                              aria-checked="false"
+                              tabindex="-1"
+                            >
+                              <div
+                                class="flex items-center justify-center w-full"
+                              >
+                                <div class="flex items-center">
+                                  <div class="text-sm">
+                                    <p
+                                      class="font-medium text-gray-900"
+                                      id="headlessui-label-54"
+                                    >
+                                      7
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="
+                                bg-white
+                                flex-shrink-0
+                                relative
+                                rounded-full
+                                shadow-md
+                                w-8
+                                h-8
+                                cursor-pointer
+                                flex
+                                text-center
+                                items-center
+                                focus:outline-none
+                                tree-selection
+                              "
+                              onclick="onTreeSelectionClick(8)"
+                              aria-checked="false"
+                              tabindex="-1"
+                            >
+                              <div
+                                class="flex items-center justify-center w-full"
+                              >
+                                <div class="flex items-center">
+                                  <div class="text-sm">
+                                    <p
+                                      class="font-medium text-gray-900"
+                                      id="headlessui-label-56"
+                                    >
+                                      8
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="
+                                bg-white
+                                flex-shrink-0
+                                relative
+                                rounded-full
+                                shadow-md
+                                w-8
+                                h-8
+                                cursor-pointer
+                                flex
+                                text-center
+                                items-center
+                                focus:outline-none
+                                tree-selection
+                              "
+                              onclick="onTreeSelectionClick(9)"
+                              aria-checked="false"
+                              tabindex="-1"
+                            >
+                              <div
+                                class="flex items-center justify-center w-full"
+                              >
+                                <div class="flex items-center">
+                                  <div class="text-sm">
+                                    <p
+                                      class="font-medium text-gray-900"
+                                      id="headlessui-label-58"
+                                    >
+                                      9
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="mt-4">Model Selection</p>
+                    <div class="w-full sm:px-0">
+                      <div
+                        class="flex p-1 space-x-1 bg-blue-900/20 rounded-2xl"
+                        role="tablist"
+                        aria-orientation="horizontal"
+                      >
+                        <button
+                          class="
+                            w-full
+                            py-2.5
+                            text-sm
+                            leading-5
+                            font-medium
+                            text-green-500
+                            rounded-xl
+                            focus:outline-none
+                            focus:ring-2
+                            ring-offset-2
+                            ring-offset-blue-200
+                            ring-white
+                            ring-opacity-60
+                            bg-white
+                            shadow
+                          "
+                          id="base-btn"
+                          role="tab"
+                          type="button"
+                          aria-selected="true"
+                          tabindex="0"
+                          aria-controls="headlessui-tabs-panel-61"
+                        >
+                          base</button
+                        ><button
+                          class="
+                            w-full
+                            py-2.5
+                            text-sm
+                            leading-5
+                            font-medium
+                            text-green-500
+                            rounded-xl
+                            focus:outline-none
+                            focus:ring-2
+                            ring-offset-2
+                            ring-offset-blue-200
+                            ring-white
+                            ring-opacity-60
+                            text-blue-100
+                            hover:bg-white/[0.12]
+                            hover:text-white
+                          "
+                          id="tree-btn"
+                          role="tab"
+                          type="button"
+                          aria-selected="false"
+                          tabindex="-1"
+                        >
+                          tree
+                        </button>
+                      </div>
+                      <div class="mt-2" id="base">
+                        <div
+                          class="
+                            bg-gray-800
+                            rounded-3xl
+                            p-3
+                            overflow-y-auto
+                            focus:outline-none
+                            max-h-[450px]
+                          "
+                          id="headlessui-tabs-panel-61"
+                          role="tabpanel"
+                          aria-labelledby="headlessui-tabs-tab-59"
+                          tabindex="0"
+                        >
+                          <ul>
+                            <li>
+                              <div class="w-full">
+                                <div class="w-full mx-auto">
+                                  <div
+                                    id="headlessui-radiogroup-63"
+                                    role="radiogroup"
+                                    aria-labelledby="headlessui-label-64"
+                                  >
+                                    <label
+                                      class="sr-only"
+                                      id="headlessui-label-64"
+                                      role="none"
+                                      >Server size</label
+                                    >
+                                    <div class="space-y-2" role="none">
+                                      <div
+                                        class="
+                                          bg-white
+                                          relative
+                                          rounded-xl
+                                          shadow-md
+                                          px-5
+                                          py-4
+                                          cursor-pointer
+                                          flex
+                                          focus:outline-none
+                                          base-selection
+                                        "
+                                        onclick="onBaseSelectionClick(0)"
+                                        aria-checked="false"
+                                        tabindex="-1"
+                                      >
+                                        <div
+                                          class="
+                                            flex
+                                            items-center
+                                            justify-between
+                                            w-full
+                                          "
+                                        >
+                                          <div class="flex items-center gap-4">
+                                            <img
+                                              src="https://biji-ai.vercel.app/images/isometric-base-default.svg"
+                                              alt=""
+                                              class="w-10"
+                                            />
+                                            <div class="text-sm">
+                                              <p
+                                                class="
+                                                  font-medium
+                                                  text-gray-900
+                                                "
+                                                id="headlessui-label-66"
+                                              >
+                                                Default
+                                              </p>
+                                              <span
+                                                class="inline text-gray-500"
+                                                id="headlessui-description-67"
+                                                ><span
+                                                  >beautifull green grass</span
+                                                >
+                                                <span aria-hidden="true"
+                                                  >·</span
+                                                >
+                                                <span>100</span></span
+                                              >
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="
+                                          bg-blue-300 bg-opacity-75
+                                          text-white
+                                          relative
+                                          rounded-xl
+                                          shadow-md
+                                          px-5
+                                          py-4
+                                          cursor-pointer
+                                          flex
+                                          focus:outline-none
+                                          base-selection
+                                        "
+                                        onclick="onBaseSelectionClick(1)"
+                                        aria-checked="true"
+                                        tabindex="0"
+                                      >
+                                        <div
+                                          class="
+                                            flex
+                                            items-center
+                                            justify-between
+                                            w-full
+                                          "
+                                        >
+                                          <div class="flex items-center gap-4">
+                                            <img
+                                              src="https://biji-ai.vercel.app/images/isometric-base-grass.svg"
+                                              alt=""
+                                              class="w-10"
+                                            />
+                                            <div class="text-sm">
+                                              <p
+                                                class="font-medium text-white"
+                                                id="headlessui-label-69"
+                                              >
+                                                Grass
+                                              </p>
+                                              <span
+                                                class="inline text-sky-100"
+                                                id="headlessui-description-70"
+                                                ><span>Green grass</span>
+                                                <span aria-hidden="true"
+                                                  >·</span
+                                                >
+                                                <span>280</span></span
+                                              >
+                                            </div>
+                                          </div>
+                                          <div class="flex-shrink-0 text-white">
+                                            <svg
+                                              viewBox="0 0 24 24"
+                                              fill="none"
+                                              class="w-6 h-6"
+                                            >
+                                              <circle
+                                                cx="12"
+                                                cy="12"
+                                                r="12"
+                                                fill="#fff"
+                                                opacity="0.2"
+                                              ></circle>
+                                              <path
+                                                d="M7 13l3 3 7-7"
+                                                stroke="#fff"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                              ></path>
+                                            </svg>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="
+                                          bg-white
+                                          relative
+                                          rounded-xl
+                                          shadow-md
+                                          px-5
+                                          py-4
+                                          cursor-pointer
+                                          flex
+                                          focus:outline-none
+                                          base-selection
+                                        "
+                                        onclick="onBaseSelectionClick(2)"
+                                        aria-checked="false"
+                                        tabindex="-1"
+                                      >
+                                        <div
+                                          class="
+                                            flex
+                                            items-center
+                                            justify-between
+                                            w-full
+                                          "
+                                        >
+                                          <div class="flex items-center gap-4">
+                                            <img
+                                              src="https://biji-ai.vercel.app/images/isometric-base-stone.svg"
+                                              alt=""
+                                              class="w-10"
+                                            />
+                                            <div class="text-sm">
+                                              <p
+                                                class="
+                                                  font-medium
+                                                  text-gray-900
+                                                "
+                                                id="headlessui-label-72"
+                                              >
+                                                Stone
+                                              </p>
+                                              <span
+                                                class="inline text-gray-500"
+                                                id="headlessui-description-73"
+                                                ><span>Rocky stone</span>
+                                                <span aria-hidden="true"
+                                                  >·</span
+                                                >
+                                                <span>280</span></span
+                                              >
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="
+                                          bg-white
+                                          relative
+                                          rounded-xl
+                                          shadow-md
+                                          px-5
+                                          py-4
+                                          cursor-pointer
+                                          flex
+                                          focus:outline-none
+                                          base-selection
+                                        "
+                                        onclick="onBaseSelectionClick(3)"
+                                        aria-checked="false"
+                                        tabindex="-1"
+                                      >
+                                        <div
+                                          class="
+                                            flex
+                                            items-center
+                                            justify-between
+                                            w-full
+                                          "
+                                        >
+                                          <div class="flex items-center gap-4">
+                                            <img
+                                              src="https://biji-ai.vercel.app/images/isometric-base-water.svg"
+                                              alt=""
+                                              class="w-10"
+                                            />
+                                            <div class="text-sm">
+                                              <p
+                                                class="
+                                                  font-medium
+                                                  text-gray-900
+                                                "
+                                                id="headlessui-label-75"
+                                              >
+                                                Water
+                                              </p>
+                                              <span
+                                                class="inline text-gray-500"
+                                                id="headlessui-description-76"
+                                                ><span>Splash Water</span>
+                                                <span aria-hidden="true"
+                                                  >·</span
+                                                >
+                                                <span>280</span></span
+                                              >
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="mt-2" id="tree" style="display: none">
+                        <div
+                          class="
+                            bg-gray-800
+                            rounded-3xl
+                            p-3
+                            max-h-[423px]
+                            overflow-y-auto
+                            focus:outline-none
+                          "
+                          id="headlessui-tabs-panel-62"
+                          role="tabpanel"
+                          aria-labelledby="headlessui-tabs-tab-60"
+                          tabindex="0"
+                        >
+                          <ul>
+                            <li>
+                              <div class="w-full">
+                                <div class="w-full mx-auto">
+                                  <div
+                                    id="headlessui-radiogroup-77"
+                                    role="radiogroup"
+                                    aria-labelledby="headlessui-label-78"
+                                  >
+                                    <label
+                                      class="sr-only"
+                                      id="headlessui-label-78"
+                                      role="none"
+                                      >Server size</label
+                                    >
+                                    <div class="space-y-2" role="none">
+                                      <div
+                                        class="
+                                          bg-blue-300 bg-opacity-75
+                                          text-white
+                                          relative
+                                          rounded-xl
+                                          shadow-md
+                                          px-5
+                                          py-4
+                                          cursor-pointer
+                                          flex
+                                          focus:outline-none
+                                          tree-img-selection
+                                        "
+                                        onclick="onTreeImgClick(0)"
+                                        aria-checked="true"
+                                        tabindex="0"
+                                      >
+                                        <div
+                                          class="
+                                            flex
+                                            items-center
+                                            justify-between
+                                            w-full
+                                          "
+                                        >
+                                          <div class="flex items-center gap-4">
+                                            <img
+                                              src="https://biji-ai.vercel.app/images//isometric-tree-0.svg"
+                                              alt=""
+                                              class="w-10"
+                                            />
+                                            <div class="text-sm">
+                                              <p
+                                                class="font-medium text-white"
+                                                id="headlessui-label-80"
+                                              >
+                                                Default
+                                              </p>
+                                              <span
+                                                class="inline text-sky-100"
+                                                id="headlessui-description-81"
+                                                ><span>No tree yet:(</span>
+                                                <span aria-hidden="true"
+                                                  >·</span
+                                                >
+                                                <span>0</span></span
+                                              >
+                                            </div>
+                                          </div>
+                                          <div class="flex-shrink-0 text-white">
+                                            <svg
+                                              viewBox="0 0 24 24"
+                                              fill="none"
+                                              class="w-6 h-6"
+                                            >
+                                              <circle
+                                                cx="12"
+                                                cy="12"
+                                                r="12"
+                                                fill="#fff"
+                                                opacity="0.2"
+                                              ></circle>
+                                              <path
+                                                d="M7 13l3 3 7-7"
+                                                stroke="#fff"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                              ></path>
+                                            </svg>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="
+                                          bg-white
+                                          relative
+                                          rounded-xl
+                                          shadow-md
+                                          px-5
+                                          py-4
+                                          cursor-pointer
+                                          flex
+                                          focus:outline-none
+                                          tree-img-selection
+                                        "
+                                        onclick="onTreeImgClick(1)"
+                                        aria-checked="false"
+                                        tabindex="-1"
+                                      >
+                                        <div
+                                          class="
+                                            flex
+                                            items-center
+                                            justify-between
+                                            w-full
+                                          "
+                                        >
+                                          <div class="flex items-center gap-4">
+                                            <img
+                                              src="https://biji-ai.vercel.app/images//isometric-tree-1.svg"
+                                              alt=""
+                                              class="w-10"
+                                            />
+                                            <div class="text-sm">
+                                              <p
+                                                class="
+                                                  font-medium
+                                                  text-gray-900
+                                                "
+                                                id="headlessui-label-83"
+                                              >
+                                                Original
+                                              </p>
+                                              <span
+                                                class="inline text-gray-500"
+                                                id="headlessui-description-84"
+                                                ><span>Beautiful Tree</span>
+                                                <span aria-hidden="true"
+                                                  >·</span
+                                                >
+                                                <span>150</span></span
+                                              >
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="
+                                          bg-white
+                                          relative
+                                          rounded-xl
+                                          shadow-md
+                                          px-5
+                                          py-4
+                                          cursor-pointer
+                                          flex
+                                          focus:outline-none
+                                          tree-img-selection
+                                        "
+                                        onclick="onTreeImgClick(2)"
+                                        aria-checked="false"
+                                        tabindex="-1"
+                                      >
+                                        <div
+                                          class="
+                                            flex
+                                            items-center
+                                            justify-between
+                                            w-full
+                                          "
+                                        >
+                                          <div class="flex items-center gap-4">
+                                            <img
+                                              src="https://biji-ai.vercel.app/images//isometric-tree-2.svg"
+                                              alt=""
+                                              class="w-10"
+                                            />
+                                            <div class="text-sm">
+                                              <p
+                                                class="
+                                                  font-medium
+                                                  text-gray-900
+                                                "
+                                                id="headlessui-label-86"
+                                              >
+                                                Pinus
+                                              </p>
+                                              <span
+                                                class="inline text-gray-500"
+                                                id="headlessui-description-87"
+                                                ><span>Beautiful Tree</span>
+                                                <span aria-hidden="true"
+                                                  >·</span
+                                                >
+                                                <span>180</span></span
+                                              >
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="
+                                          bg-white
+                                          relative
+                                          rounded-xl
+                                          shadow-md
+                                          px-5
+                                          py-4
+                                          cursor-pointer
+                                          flex
+                                          focus:outline-none
+                                          tree-img-selection
+                                        "
+                                        onclick="onTreeImgClick(3)"
+                                        aria-checked="false"
+                                        tabindex="-1"
+                                      >
+                                        <div
+                                          class="
+                                            flex
+                                            items-center
+                                            justify-between
+                                            w-full
+                                          "
+                                        >
+                                          <div class="flex items-center gap-4">
+                                            <img
+                                              src="https://biji-ai.vercel.app/images//isometric-tree-3.svg"
+                                              alt=""
+                                              class="w-10"
+                                            />
+                                            <div class="text-sm">
+                                              <p
+                                                class="
+                                                  font-medium
+                                                  text-gray-900
+                                                "
+                                                id="headlessui-label-89"
+                                              >
+                                                Bubble
+                                              </p>
+                                              <span
+                                                class="inline text-gray-500"
+                                                id="headlessui-description-90"
+                                                ><span>Bubbly Tree</span>
+                                                <span aria-hidden="true"
+                                                  >·</span
+                                                >
+                                                <span>200</span></span
+                                              >
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="
+                                          bg-white
+                                          relative
+                                          rounded-xl
+                                          shadow-md
+                                          px-5
+                                          py-4
+                                          cursor-pointer
+                                          flex
+                                          focus:outline-none
+                                          tree-img-selection
+                                        "
+                                        onclick="onTreeImgClick(4)"
+                                        aria-checked="false"
+                                        tabindex="-1"
+                                      >
+                                        <div
+                                          class="
+                                            flex
+                                            items-center
+                                            justify-between
+                                            w-full
+                                          "
+                                        >
+                                          <div class="flex items-center gap-4">
+                                            <img
+                                              src="https://biji-ai.vercel.app/images//isometric-tree-4.svg"
+                                              alt=""
+                                              class="w-10"
+                                            />
+                                            <div class="text-sm">
+                                              <p
+                                                class="
+                                                  font-medium
+                                                  text-gray-900
+                                                "
+                                                id="headlessui-label-92"
+                                              >
+                                                Rectangly
+                                              </p>
+                                              <span
+                                                class="inline text-gray-500"
+                                                id="headlessui-description-93"
+                                                ><span>Beautiful Tree</span>
+                                                <span aria-hidden="true"
+                                                  >·</span
+                                                >
+                                                <span>200</span></span
+                                              >
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="
+                                          bg-white
+                                          relative
+                                          rounded-xl
+                                          shadow-md
+                                          px-5
+                                          py-4
+                                          cursor-pointer
+                                          flex
+                                          focus:outline-none
+                                          tree-img-selection
+                                        "
+                                        onclick="onTreeImgClick(5)"
+                                        aria-checked="false"
+                                        tabindex="-1"
+                                      >
+                                        <div
+                                          class="
+                                            flex
+                                            items-center
+                                            justify-between
+                                            w-full
+                                          "
+                                        >
+                                          <div class="flex items-center gap-4">
+                                            <img
+                                              src="https://biji-ai.vercel.app/images//isometric-tree-5.svg"
+                                              alt=""
+                                              class="w-10"
+                                            />
+                                            <div class="text-sm">
+                                              <p
+                                                class="
+                                                  font-medium
+                                                  text-gray-900
+                                                "
+                                                id="headlessui-label-95"
+                                              >
+                                                Cupky
+                                              </p>
+                                              <span
+                                                class="inline text-gray-500"
+                                                id="headlessui-description-96"
+                                                ><span>Delicious Tree</span>
+                                                <span aria-hidden="true"
+                                                  >·</span
+                                                >
+                                                <span>220</span></span
+                                              >
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="
+                                          bg-white
+                                          relative
+                                          rounded-xl
+                                          shadow-md
+                                          px-5
+                                          py-4
+                                          cursor-pointer
+                                          flex
+                                          focus:outline-none
+                                          tree-img-selection
+                                        "
+                                        onclick="onTreeImgClick(6)"
+                                        aria-checked="false"
+                                        tabindex="-1"
+                                      >
+                                        <div
+                                          class="
+                                            flex
+                                            items-center
+                                            justify-between
+                                            w-full
+                                          "
+                                        >
+                                          <div class="flex items-center gap-4">
+                                            <img
+                                              src="https://biji-ai.vercel.app/images//isometric-tree-6.svg"
+                                              alt=""
+                                              class="w-10"
+                                            />
+                                            <div class="text-sm">
+                                              <p
+                                                class="
+                                                  font-medium
+                                                  text-gray-900
+                                                "
+                                                id="headlessui-label-98"
+                                              >
+                                                Queen
+                                              </p>
+                                              <span
+                                                class="inline text-gray-500"
+                                                id="headlessui-description-99"
+                                                ><span>Heart Tree</span>
+                                                <span aria-hidden="true"
+                                                  >·</span
+                                                >
+                                                <span>220</span></span
+                                              >
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="
+                                          bg-white
+                                          relative
+                                          rounded-xl
+                                          shadow-md
+                                          px-5
+                                          py-4
+                                          cursor-pointer
+                                          flex
+                                          focus:outline-none
+                                          tree-img-selection
+                                        "
+                                        onclick="onTreeImgClick(7)"
+                                        aria-checked="false"
+                                        tabindex="-1"
+                                      >
+                                        <div
+                                          class="
+                                            flex
+                                            items-center
+                                            justify-between
+                                            w-full
+                                          "
+                                        >
+                                          <div class="flex items-center gap-4">
+                                            <img
+                                              src="https://biji-ai.vercel.app/images//isometric-tree-7.svg"
+                                              alt=""
+                                              class="w-10"
+                                            />
+                                            <div class="text-sm">
+                                              <p
+                                                class="
+                                                  font-medium
+                                                  text-gray-900
+                                                "
+                                                id="headlessui-label-101"
+                                              >
+                                                Sign Board
+                                              </p>
+                                              <span
+                                                class="inline text-gray-500"
+                                                id="headlessui-description-102"
+                                                ><span>Mark your forest👀</span>
+                                                <span aria-hidden="true"
+                                                  >·</span
+                                                >
+                                                <span>250</span></span
+                                              >
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="
+                                          bg-white
+                                          relative
+                                          rounded-xl
+                                          shadow-md
+                                          px-5
+                                          py-4
+                                          cursor-pointer
+                                          flex
+                                          focus:outline-none
+                                          tree-img-selection
+                                        "
+                                        onclick="onTreeImgClick(8)"
+                                        aria-checked="false"
+                                        tabindex="-1"
+                                      >
+                                        <div
+                                          class="
+                                            flex
+                                            items-center
+                                            justify-between
+                                            w-full
+                                          "
+                                        >
+                                          <div class="flex items-center gap-4">
+                                            <img
+                                              src="https://biji-ai.vercel.app/images//isometric-tree-8.svg"
+                                              alt=""
+                                              class="w-10"
+                                            />
+                                            <div class="text-sm">
+                                              <p
+                                                class="
+                                                  font-medium
+                                                  text-gray-900
+                                                "
+                                                id="headlessui-label-104"
+                                              >
+                                                Mushroom
+                                              </p>
+                                              <span
+                                                class="inline text-gray-500"
+                                                id="headlessui-description-105"
+                                                ><span
+                                                  >Hipnotise your forest✨</span
+                                                >
+                                                <span aria-hidden="true"
+                                                  >·</span
+                                                >
+                                                <span>250</span></span
+                                              >
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-full lg:self-start lg:w-8/12">
+                  <div
+                    class="
+                      relative
+                      flex
+                      items-center
+                      justify-center
+                      text-white
+                      layout
+                    "
+                  >
+                    <div class="absolute top-40">
+                      <div class="flex flex-col items-center justify-center">
+                        <img
+                          id="base-1"
+                          src="https://biji-ai.vercel.app/images/isometric-base-grass.svg"
+                          alt=""
+                          class="-mb-16 w-52 animate-custom-bounce"
+                        />
+                        <div class="flex flex-row gap-2 -mb-16">
+                          <img
+                            id="base-2"
+                            src="https://biji-ai.vercel.app/images/isometric-base-default.svg"
+                            alt=""
+                            class="w-52"
+                          /><img
+                            id="base-3"
+                            src="https://biji-ai.vercel.app/images/isometric-base-default.svg"
+                            alt=""
+                            class="w-52"
+                          />
+                        </div>
+                        <div class="flex flex-row gap-2 -mb-16">
+                          <img
+                            id="base-4"
+                            src="https://biji-ai.vercel.app/images/isometric-base-default.svg"
+                            alt=""
+                            class="w-52"
+                          /><img
+                            id="base-5"
+                            src="https://biji-ai.vercel.app/images/isometric-base-default.svg"
+                            alt=""
+                            class="w-52"
+                          /><img
+                            id="base-6"
+                            src="https://biji-ai.vercel.app/images/isometric-base-default.svg"
+                            alt=""
+                            class="w-52"
+                          />
+                        </div>
+                        <div class="flex flex-row gap-2 -mb-16">
+                          <img
+                            id="base-7"
+                            src="https://biji-ai.vercel.app/images/isometric-base-default.svg"
+                            alt=""
+                            class="w-52"
+                          /><img
+                            id="base-8"
+                            src="https://biji-ai.vercel.app/images/isometric-base-default.svg"
+                            alt=""
+                            class="w-52"
+                          />
+                        </div>
+                        <img
+                          id="base-9"
+                          src="https://biji-ai.vercel.app/images/isometric-base-default.svg"
+                          alt=""
+                          class="relative w-52"
+                        />
+                      </div>
+                    </div>
+                    <div class="absolute top-0">
+                      <div class="flex flex-col items-center justify-center">
+                        <img
+                          id="tree-1"
+                          src="https://biji-ai.vercel.app/images/isometric-tree-0.svg"
+                          alt=""
+                          class="w-52 z-10 animate-custom-bounce z-0"
+                          style="margin-bottom: -150px"
+                        />
+                        <div
+                          class="flex flex-row gap-2"
+                          style="margin-bottom: -150px"
+                        >
+                          <img
+                            id="tree-2"
+                            src="https://biji-ai.vercel.app/images/isometric-tree-0.svg"
+                            alt=""
+                            class="w-52 z-10"
+                          /><img
+                            id="tree-3"
+                            src="https://biji-ai.vercel.app/images/isometric-tree-0.svg"
+                            alt=""
+                            class="w-52 z-10"
+                          />
+                        </div>
+                        <div
+                          class="flex flex-row gap-2"
+                          style="margin-bottom: -150px"
+                        >
+                          <img
+                            id="tree-4"
+                            src="https://biji-ai.vercel.app/images/isometric-tree-0.svg"
+                            alt=""
+                            class="w-52 z-10"
+                          /><img
+                            id="tree-5"
+                            src="https://biji-ai.vercel.app/images/isometric-tree-0.svg"
+                            alt=""
+                            class="w-52 z-10"
+                          /><img
+                            id="tree-6"
+                            src="https://biji-ai.vercel.app/images/isometric-tree-0.svg"
+                            alt=""
+                            class="w-52 z-10"
+                          />
+                        </div>
+                        <div
+                          class="flex flex-row gap-2"
+                          style="margin-bottom: -150px"
+                        >
+                          <img
+                            id="tree-7"
+                            src="https://biji-ai.vercel.app/images/isometric-tree-0.svg"
+                            alt=""
+                            class="w-52 z-10"
+                          /><img
+                            id="tree-8"
+                            src="https://biji-ai.vercel.app/images/isometric-tree-0.svg"
+                            alt=""
+                            class="w-52 z-10"
+                          />
+                        </div>
+                        <img
+                          id="tree-9"
+                          src="https://biji-ai.vercel.app/images/isometric-tree-0.svg"
+                          alt=""
+                          class="w-52 z-10"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

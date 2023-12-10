@@ -1,0 +1,588 @@
+/*=============== index.html ===============*/
+/*=============== HEADER and SEARCH BAR ===============*/
+header nav {
+  border-bottom: solid green 3px;
+}
+header .search-box {
+  flex: 1;
+  position: relative;
+  padding-top: 0px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.search-box input {
+  width: 100%;
+  height: 35px;
+  border: none;
+  outline: none;
+  background: #98fac6;
+  border-radius: 30px;
+  color: gray;
+  font-size: 12px;
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 40px;
+}
+.search-box button {
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  border-radius: 25px;
+  border: none;
+  position: absolute;
+  top: 0.5px;
+  right: 42px;
+  transform: scale(0.9);
+  background: green;
+}
+.search-box button i {
+  color: #fff;
+}
+.search-box button:hover {
+  background: darkcyan;
+}
+.accordion-item,
+#selloption {
+  opacity: 0;
+}
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3rem;
+
+  /*========== Colors ==========*/
+  --hue: 174;
+  --sat: 63%;
+  --first-color: hsl(var(--hue), var(--sat), 40%);
+  --first-color-alt: hsl(var(--hue), var(--sat), 36%);
+  --title-color: hsl(var(--hue), 12%, 15%);
+  --text-color: hsl(var(--hue), 8%, 35%);
+  --body-color: hsl(var(--hue), 100%, 99%);
+  --container-color: #fff;
+
+  /*========== Font and typography ==========*/
+  --body-font: "Open Sans", sans-serif;
+  --h1-font-size: 1.5rem;
+  --normal-font-size: 0.938rem;
+  --tiny-font-size: 0.625rem;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+@media screen and (min-width: 968px) {
+  :root {
+    --h1-font-size: 2.25rem;
+    --normal-font-size: 1rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: var(--header-height) 0 0 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.section {
+  padding: 1rem;
+}
+
+.section__title {
+  font-size: var(--h1-font-size);
+  color: var(--title-color);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  margin-top: 10px;
+}
+
+.section__height {
+  height: 90vh;
+}
+/*=============== LAYOUT ===============*/
+.container {
+  max-width: 968px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+/*=============== HEADER ===============*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--container-color);
+  z-index: 10;
+  transition: 0.4s;
+}
+
+/*=============== NAV ===============*/
+.nav {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo {
+  align-items: center;
+  justify-content: center;
+  margin: center;
+}
+.nav__logo img {
+  height: 40px;
+}
+
+@media screen and (max-width: 767px) {
+  .nav__menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: var(--container-color);
+    box-shadow: 0 -1px 12px hsla(var(--hue), var(--sat), 15%, 0.15);
+    width: 100%;
+    height: 4rem;
+    padding: 0 1rem;
+    display: grid;
+    align-content: center;
+    border-radius: 1.25rem 1.25rem 0 0;
+    transition: 0.4s;
+  }
+}
+
+.nav__list,
+.nav__link {
+  display: flex;
+}
+
+.nav__link {
+  flex-direction: column;
+  align-items: center;
+  row-gap: 4px;
+  color: var(--title-color);
+  font-weight: 600;
+}
+
+.nav__list {
+  justify-content: space-around;
+}
+
+.nav__name {
+  font-size: var(--tiny-font-size);
+  /* display: none;*/ /* Minimalist design, hidden labels */
+}
+
+.nav__icon {
+  font-size: 1.5rem;
+}
+
+/*Active link*/
+.active-link {
+  position: relative;
+  color: var(--first-color);
+  transition: 0.3s;
+}
+
+/* Minimalist design, active link */
+/* .active-link::before{
+    content: '';
+    position: absolute;
+    bottom: -.5rem;
+    width: 4px;
+    height: 4px;
+    background-color: var(--first-color);
+    border-radius: 50%;
+  } */
+
+/* Change background header */
+.scroll-header {
+  box-shadow: 0 1px 12px hsla(var(--hue), var(--sat), 15%, 0.15);
+}
+
+/*=============== MEDIA QUERIES ===============*/
+/* For small devices */
+/* Remove if you choose, the minimalist design */
+@media screen and (max-width: 320px) {
+  .nav__name {
+    display: none;
+  }
+}
+
+/* For medium devices */
+@media screen and (min-width: 576px) {
+  .nav__list {
+    justify-content: center;
+    column-gap: 3rem;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  body {
+    margin: 0;
+  }
+  .section {
+    padding: 7rem 0 2rem;
+  }
+  .nav {
+    height: calc(var(--header-height) + 1.5rem); /* 4.5rem */
+  }
+  .nav__img {
+    display: none;
+  }
+  .nav__icon {
+    display: none;
+  }
+  .nav__name {
+    font-size: var(--normal-font-size);
+    /* display: block; */ /* Minimalist design, visible labels */
+  }
+  .nav__link:hover {
+    color: var(--first-color);
+  }
+
+  /* First design, remove if you choose the minimalist design */
+  .active-link::before {
+    content: "";
+    position: absolute;
+    bottom: -0.75rem;
+    width: 4px;
+    height: 4px;
+    background-color: var(--first-color);
+    border-radius: 50%;
+  }
+
+  /* Minimalist design */
+  /* .active-link::before{
+        bottom: -.75rem;
+    } */
+}
+
+/* For large devices */
+@media screen and (min-width: 1024px) {
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+canvas {
+  z-index: 9;
+  position: relative;
+  top: -700px;
+}
+
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: inherit;
+  &:before,
+  &:after {
+    box-sizing: inherit;
+  }
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  font-family: "Inter", Arial;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+/*=============== index.html store images ===============*/
+
+/*=============== market.html ===============*/
+/*=============== market.html categories ===============*/
+.trigger {
+  font-size: 1.5em;
+  display: flex;
+  padding: 0.25em;
+  margin-right: 0.5em;
+}
+.wrapper a {
+  background: #98fac6;
+}
+.header-top {
+  width: 50%;
+}
+.header-top .left {
+  background: #98fac6;
+}
+.header-top .wrapper {
+  font-size: var(--font-small);
+  font-weight: var(--fw3);
+  justify-content: space-between;
+  line-height: 42px;
+}
+.header-top .wrapper ul {
+  gap: 2em;
+}
+.header-top li {
+  position: relative;
+}
+.mega {
+  display: none;
+}
+.mobile-hide {
+  display: flex;
+}
+.create-post-box {
+  float: right;
+}
+/*=============== market.html sell button===============*/
+.header-right {
+  flex: 1;
+  float: right;
+  padding-right: 3em;
+  margin-top: 10px;
+}
+.header-right i {
+  height: 150%;
+  cursor: pointer;
+}
+.header-right button {
+  position: relative;
+  cursor: pointer;
+}
+
+/*=============== market.html responsiveness===============*/
+@media screen and (min-width: 992px) {
+  .container {
+    padding: 0 2em;
+  }
+  .desktop-hide {
+    display: none;
+  }
+  .flexitem i {
+    margin-left: -110px;
+    display: flex;
+    position: relative;
+  }
+  .header-top {
+    width: 30%;
+  }
+
+  /*mega menu*/
+  nav .mega {
+    position: absolute;
+    width: var(--percent100);
+    height: auto;
+    top: auto;
+    left: 0;
+    right: 0;
+    padding: 2.5em;
+    line-height: 2em;
+    background-color: var(--light-bg-color);
+    box-shadow: rgb(0 0 0 / 20%) 0 30px 20px 30px;
+    z-index: 1;
+  }
+  nav .mega .wrapper {
+    display: flex;
+  }
+  .mega .flexcol {
+    flex: 1;
+    min-width: 100px;
+    padding-right: 2.5em;
+    margin-bottom: 1.5em;
+    z-index: 1;
+  }
+}
+@media screen and (max-width: 991px) {
+  .header-top .left {
+    display: none;
+    background: #98fac6;
+  }
+}
+/*=============== market.html featured items===============*/
+.flexcenter {
+  display: flex;
+}
+.column .image {
+  width: 150px;
+  height: 150px;
+  border: solid #000 1px;
+}
+.column item {
+  display: flex;
+}
+
+/*=============== post.html upload file===============*/
+.image-content {
+  border: #aaa solid 1px;
+  height: 300px;
+  width: 300px;
+}
+.form-group {
+  justify-content: center;
+}
+.wrapper .editor-panel {
+  padding: 15px 20px;
+  width: 280px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.editor-panel .title {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+.editor-panel .options,
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.editor-panel button {
+  outline: none;
+  height: 40px;
+  font-size: 14px;
+  color: #6c757d;
+  background: #fff;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  border: 1px solid #aaa;
+}
+.editor-panel .filter button {
+  width: calc(100% / 2 - 4px);
+}
+.editor-panel button:hover {
+  background: #f5f5f5;
+}
+.filter button.active {
+  color: #fff;
+  border-color: #5372f0;
+  background: #5372f0;
+}
+.filter .slider {
+  margin-top: 12px;
+}
+.filter .slider .filter-info {
+  display: flex;
+  color: #464646;
+  font-size: 14px;
+  justify-content: space-between;
+}
+.filter .slider input {
+  width: 100%;
+  height: 5px;
+  accent-color: #5372f0;
+}
+.editor-panel .rotate {
+  margin-top: 17px;
+}
+.editor-panel .rotate button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% / 4 - 3px);
+}
+.rotate .options button:nth-child(3),
+.rotate .options button:nth-child(4) {
+  font-size: 18px;
+}
+.rotate .options button:active {
+  color: #fff;
+  background: #5372f0;
+  border-color: #5372f0;
+}
+
+.controls button {
+  padding: 11px 20px;
+  font-size: 14px;
+  border-radius: 3px;
+  outline: none;
+  color: #fff;
+  cursor: pointer;
+  background: none;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+.controls .reset-filter {
+  color: #6c757d;
+  border: 1px solid #6c757d;
+}
+.controls .reset-filter:hover {
+  color: #fff;
+  background: #6c757d;
+}
+.controls .choose-img {
+  background: #6c757d;
+  border: 1px solid #6c757d;
+}
+.controls .save-img {
+  margin-left: 5px;
+  background: #5372f0;
+  border: 1px solid #5372f0;
+}
+@media screen and (max-width: 760px) {
+  .container {
+    padding: 25px;
+  }
+  .container .wrapper {
+    flex-wrap: wrap-reverse;
+  }
+  .wrapper .editor-panel {
+    width: 100%;
+  }
+  .wrapper .preview-img {
+    width: 100%;
+    margin: 0 0 15px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .controls button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .controls .row {
+    width: 100%;
+  }
+  .controls .row .save-img {
+    margin-left: 0px;
+  }
+}
+
+/*=============== chats.html ===============*/
+#options {
+  overflow: hidden;
+}
+.swiper-container {
+  height: 100px; /* Adjust this to your preferred height */
+}
+/* Customize the slides' appearance */
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

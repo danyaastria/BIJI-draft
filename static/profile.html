@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Biji AI</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="profile.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js" integrity="sha512-DWtDo/6AXxH1t9p7GCWqmC4XTVK/eje94XTV6QYB39rGllLN8Tr3izDf6lkmebgqRnYh4wtSFm4CvBoA9SrdpA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+    <script src="main.js"></script>
+
+    <script src="https://kit.fontawesome.com/8e38487435.js" crossorigin="anonymous"></script>
+	
+</head>
+
+
+<body>
+    <!--=============== HEADER ===============-->
+    <header class="header" id="header">
+      <nav class="nav container">
+          <a href="index.html" class="nav__logo"><img src="images/bijilogo.png"></a>
+          <!--=============== search bar ===============-->
+          <div class="search-box">
+            <form action="">
+              <input type="text" name=""search id="srch" placeholder="Search">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+  
+          <div class="nav__menu" id="nav-menu">
+              <ul class="nav__list">
+                  <li class="nav__item">
+                      <a href="market.html" class="nav__link">
+                          <i class='bx bx-store-alt nav__icon' ></i>
+                          <span class="nav__name">Market</span>
+                      </a>
+                  </li>
+                  
+                  <li class="nav__item">
+                      <a href="chats.html" class="nav__link">
+                          <i class="fa-regular fa-comment-dots nav__icon"></i>
+                          <span class="nav__name">Chat</span>
+                      </a>
+                  </li>
+  
+                  <li class="nav__item">
+                      <a href="index.html" class="nav__link">
+                          <i class='bx bx-scan nav__icon'></i>
+                          <span class="nav__name">Scan</span>
+                      </a>
+                  </li>
+  
+                  <li class="nav__item">
+                      <a href="forest.html" class="nav__link">
+                          <i class='bx bxs-tree nav__icon'></i>
+                          <span class="nav__name">Forest</span>
+                      </a>
+                  </li>
+  
+                  <li class="nav__item">
+                      <a href="profile.html" class="nav__link active-link">
+                          <i class='bx bx-user nav__icon'></i>
+                          <span class="nav__name">Me</span>
+                      </a>
+                  </li>
+              </ul>
+          </div>
+  
+      </nav>
+  </header>
+      
+
+	<div class="container container-profile">
+
+		<div class="profile">
+
+			<div class="profile-image">
+
+				<img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt="">
+
+			</div>
+
+			<div class="profile-user-settings">
+
+				<h1 class="profile-user-name">janedoe_</h1>
+
+				<button class="btn profile-edit-btn">Edit Profile</button>
+
+				<button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
+
+			</div>
+
+			<div class="profile-stats">
+
+				<ul>
+					<li><span class="profile-stat-count">164</span> posts</li>
+					<li><span class="profile-stat-count">188</span> followers</li>
+					<li><span class="profile-stat-count">206</span> following</li>
+				</ul>
+
+			</div>
+
+			<div class="profile-bio">
+
+				<p><span class="profile-real-name">Jane Doe</span> Lorem ipsum dolor sit, amet consectetur adipisicing elit 📷✈️🏕️</p>
+
+			</div>
+
+		</div>
+		<!-- End of profile section -->
+
+	</div>
+	<!-- End of container -->
+
+
+<main>
+
+	<div class="container">
+
+
+	</div>
+	<!-- End of container -->
+
+</main>
+</body>
+</html>
